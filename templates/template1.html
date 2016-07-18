@@ -1,0 +1,23 @@
+<div class='container'>
+<!-- 
+    вывод информации полученной из файла new.csv, 
+    массив $news содержит значения разобранной строчки в упоминаемом файле,
+    в случае ссылочного знчаения запускаем процедуру получения текстового значения
+ -->
+    <h1><?= $news[1]    //TITLE?></h1>
+    <hr />
+    <p style="font-size:10px"><?= helpers\authors::getAuthorName($news[3])  //AUTHOR?></p>
+    <p style="font-size:10px"><?= $news[4]  //DATE?></p>
+    <p>
+    <?php  // если файл с картинками не существует, тогда выводим предупреждение вместо изображения
+            //если все файл существует, выводим картинку
+        if (!empty(helpers\images::getImage($news[5])))
+        {
+            echo    '<img src="img'.URI_SEPARATOR.helpers\images::getImage($news[5])[1].'"'.
+                    'width   ="'.helpers\images::getImage($news[5])[2].'"'.
+                    'height  ="'.helpers\images::getImage($news[5])[3].'"/>';
+        }
+    ?>
+    </p>
+    <p style="font-size:12px"><?= $news[2]  //TEXT?></p>
+</div>
